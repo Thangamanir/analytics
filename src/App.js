@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {usersRef,logged_events} from "./config/firebase";
+
 
 class App extends Component {
   render() {
+    console.log(usersRef)
+    console.log('----------')
+    console.log(logged_events.val)
+    logged_events.orderByChild('createdAt').limitToLast(50).on("child_added",function(snapshot) {
+            console.log(snapshot.key);
+    });
+    
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+         
         </header>
       </div>
     );
